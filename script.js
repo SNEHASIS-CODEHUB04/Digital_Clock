@@ -1,23 +1,27 @@
-let hr = document.getElementById('hour');
-let min = document.getElementById('min');
-let sec = document.getElementById('sec');
+ function clock(){
+                
+    var monthNames = [ "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December" ]; 
+    var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 
-function displayTime(){
-    let date = new Date();
+    var today = new Date();
 
-    // Getting hour, mins, secs from date
-    let hh = date.getHours();
-    let mm = date.getMinutes();
-    let ss = date.getSeconds();
+    document.getElementById('Date').innerHTML = (dayNames[today.getDay()] + " " + 
+    today.getDate() + ' ' + monthNames[today.getMonth()] + ' ' +today.getFullYear());
 
-    let hRotation = 30*hh + mm/2;
-    let mRotation = 6*mm;
-    let sRotation = 6*ss;
+    
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    var day = h<11 ? 'AM': 'PM';
 
-    hr.style.transform = `rotate(${hRotation}deg)`;
-    min.style.transform = `rotate(${mRotation}deg)`;
-    sec.style.transform = `rotate(${sRotation}deg)`;
+    h = h<10? '0'+h: h;
+    m = m<10? '0'+m: m;
+    s = s<10? '0'+s: s;               
+
+    document.getElementById('hours').innerHTML = h;
+    document.getElementById('min').innerHTML = m;
+    document.getElementById('sec').innerHTML = s;
 
 }
-
-setInterval(displayTime, 1000);
+var inter = setInterval(clock,400);
